@@ -10,12 +10,12 @@ class Usuario{
     }
 
     addMascota(){
-
+        
     }
     addBook(){
 
     }
     getBookNames(){
-        
+
     }
 }
