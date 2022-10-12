@@ -8,9 +8,12 @@ class Usuario{
     getFullName(){
         console.log(`${nombre} ${apellido}`)
     }
-
+    countMascotas(){
+        let cantidadMascotas = length.mascotas;
+        console.log(cantidadMascotas);
+    }
     addMascota(){
-        
+
     }
     addBook(){
 
