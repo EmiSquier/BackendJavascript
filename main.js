@@ -8,7 +8,7 @@ class Usuario{
     getFullName(nombre, apellido){
         return `Full name: ${this.nombre} ${this.apellido}`
     }
-    countMascotas(){
+    countMascotas(mascotas){
         return ("Cantidad de mascotas:" + Number(this.mascotas.length))
     }
     addMascota(mascotas){
@@ -25,8 +25,10 @@ class Usuario{
 
 const test = new Usuario("emiliano", "marchese", ["Harry potter y el caliz de fuego", "JK Rowling"], "gata")
 
+
 test.countMascotas;
 test.addBook("1984", "Jeorge Orwell");
 test.addBook("Un Mundo Feliz", "Aldous Huxley");
+test.addMascota("pez");
 
 console.log(test)
