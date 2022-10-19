@@ -23,7 +23,7 @@ class Usuario{
     }
 }
 
-const test = new Usuario("emiliano", "marchese", ["Harry potter y el caliz de fuego", "JK Rowling"], "gata")
+const test = new Usuario("emiliano", "marchese", ["Harry potter y el caliz de fuego", "JK Rowling"], ["gata"])
 
 
 test.countMascotas;
