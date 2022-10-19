@@ -9,11 +9,10 @@ class Container {
     save = async (product) => {
         try {
             if (fs.existsSync(this.filename)) {
-                let results = await fs.promises.readFile(this.filename)
-                let products = JSON.parse(results)
+                let result = await fs.promises.readFile(this.filename)
+                let products = JSON.parse(result)
                 if (products.length > 0) {
-                    console.log(products[product.length - 1].id)
-                    lastId = products[product.id].id + 1;
+                    lastId = products[product.id - 1].id + 1;
                     let newProduct = {
                         id: lastId,
                         ...product
@@ -23,17 +22,25 @@ class Container {
                         id: 1,
                         ...product
                     }
-                    products.push(newProduct)
-                    await fs.writeFile(this.filename, JSON.stringify(products));
-                    return lastId
+                    products.push(newProduct);
+                    await fs.promises.writeFile(this.filename, JSON.stringify(products));
+                    return lastId;
                 }
             } else {
                 let newProduct = {
                     id: 1,
                     ...product
                 }
-                await fs.promises.writeFile(this.filename, JSON.stringify([newProduct]));
-                return newProduct
+                products.push(newProduct);
+                await fs.promises.writeFile(this.filename, JSON.stringify(products))
+                return 1;
+            }  else {
+                let newProduct = {
+                    id: 1,
+                    ...product
+                }
+                await fs.promises.writeFile(this.filename, JSON.stringify([newProduct]))
+                return 1;
             }
 
         }
@@ -45,7 +52,7 @@ class Container {
 
 let container = new Container("products")
 
-let product = {
+let product1 = {
     title: "Race Helmet",
     price: 600,
     thumbnail: "https://ururacer.uy/wp-content/uploads/2021/11/AGV21M.00004JQ_SN005894_CLOSEUP03-600x600.png"
@@ -63,6 +70,6 @@ let product3 = {
 }
 
 
-container.save(product)
+container.save(product1)
 container.save(product2)
 container.save(product3)
