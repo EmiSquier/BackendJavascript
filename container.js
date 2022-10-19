@@ -25,29 +25,29 @@ class Container {
                     products.push(newProduct);
                     await fs.promises.writeFile(this.filename, JSON.stringify(products));
                     return lastId;
+                } else {
+                    let newProduct = {
+                        id: 1,
+                        ...product
+                    }
+                    products.push(newProduct);
+                    await fs.promises.writeFile(this.filename, JSON.stringify(products));
+                    return 1;
                 }
             } else {
-                let newProduct = {
-                    id: 1,
-                    ...product
-                }
-                products.push(newProduct);
-                await fs.promises.writeFile(this.filename, JSON.stringify(products))
-                return 1;
-            }  else {
-                let newProduct = {
-                    id: 1,
-                    ...product
-                }
-                await fs.promises.writeFile(this.filename, JSON.stringify([newProduct]))
-                return 1;
+            let newProduct = {
+                id: 1,
+                ...product
             }
+            await fs.promises.writeFile(this.filename, JSON.stringify([newProduct]));
+            return 1;
+        }
 
-        }
-        catch (error) {
-            console.log(error);
-        }
     }
+    catch(error) {
+        console.log(error);
+    }
+}
 }
 
 let container = new Container("products")
